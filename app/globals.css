@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #fff5f5;
+  --color-foreground: #4d3838;
+  --color-brand-pink: #f9d8d6;
+  --color-brand-accent: #cb8b8b;
+  --color-brand-dark: #4d3838;
+}
+
+/* Custom styles based on user request */
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    @apply antialiased;
+  }
+}
+
+@layer components {
+  /* Estilização de Botões (Marca, Radius e Shadow) */
+  .btn-ll {
+    @apply bg-brand-accent text-white border-2 border-brand-accent rounded-lg shadow-[0_4px_12px_rgba(203,139,139,0.3)] 
+           uppercase font-bold px-8 py-4 transition-all duration-300 ease-in-out inline-flex items-center justify-center tracking-widest text-xs;
+  }
+
+  .btn-ll:hover {
+    @apply bg-brand-accent/90 text-white border-brand-accent/90 -translate-y-0.5 shadow-[0_6px_16px_rgba(203,139,139,0.5)];
+  }
+}
+
+/* Ocultar Transbordamento Horizontal (Exclusivo para Mobile) */
+@media screen and (max-width: 767px) {
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}
