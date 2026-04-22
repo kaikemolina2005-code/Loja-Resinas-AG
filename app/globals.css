@@ -1,35 +1,48 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #fff5f5;
-  --color-foreground: #4d3838;
-  --color-brand-pink: #f9d8d6;
-  --color-brand-accent: #cb8b8b;
-  --color-brand-dark: #4d3838;
+  --color-background: #f8f6f2;
+  --color-foreground: #1a1a1a;
+  --color-brand-teal: #2a7c7c;
+  --color-brand-teal-light: #4aa8a8;
+  --color-brand-gold: #c9a84c;
+  --color-brand-dark: #1a1a1a;
+  --color-brand-marble: #f8f6f2;
+  --font-playfair: 'Playfair Display', serif;
+  --font-poppins: 'Poppins', sans-serif;
 }
 
-/* Custom styles based on user request */
 @layer base {
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-poppins);
     @apply antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-playfair);
   }
 }
 
 @layer components {
-  /* Estilização de Botões (Marca, Radius e Shadow) */
-  .btn-ll {
-    @apply bg-brand-accent text-white border-2 border-brand-accent rounded-lg shadow-[0_4px_12px_rgba(203,139,139,0.3)] 
-           uppercase font-bold px-8 py-4 transition-all duration-300 ease-in-out inline-flex items-center justify-center tracking-widest text-xs;
+  .btn-primary {
+    @apply bg-brand-teal text-white border-2 border-brand-teal
+           uppercase font-semibold px-8 py-3 transition-all duration-300 ease-in-out 
+           inline-flex items-center justify-center tracking-widest text-xs
+           hover:bg-brand-teal-light hover:border-brand-teal-light;
+    font-family: var(--font-poppins);
   }
 
-  .btn-ll:hover {
-    @apply bg-brand-accent/90 text-white border-brand-accent/90 -translate-y-0.5 shadow-[0_6px_16px_rgba(203,139,139,0.5)];
+  .btn-ll {
+    @apply bg-brand-teal text-white border-2 border-brand-teal
+           uppercase font-semibold px-8 py-4 transition-all duration-300 ease-in-out 
+           inline-flex items-center justify-center tracking-widest text-xs
+           hover:bg-brand-teal-light hover:border-brand-teal-light;
+    font-family: var(--font-poppins);
   }
 }
 
-/* Ocultar Transbordamento Horizontal (Exclusivo para Mobile) */
 @media screen and (max-width: 767px) {
   html, body {
     max-width: 100%;
