@@ -1,13 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #f8f6f2;
-  --color-foreground: #1a1a1a;
-  --color-brand-teal: #2a7c7c;
-  --color-brand-teal-light: #4aa8a8;
-  --color-brand-gold: #c9a84c;
-  --color-brand-dark: #1a1a1a;
-  --color-brand-marble: #f8f6f2;
+  --color-background: #f7f7f7;
+  --color-foreground: #333;
+  --color-brand-primary: #1a3055;
+  --color-brand-primary-dark: #0d1a30;
+  --color-brand-dark: #333;
+  /* keep teal aliases so existing classes don't break */
+  --color-brand-teal: #1a3055;
+  --color-brand-teal-light: #2a4a7f;
   --font-playfair: 'Playfair Display', serif;
   --font-poppins: 'Poppins', sans-serif;
 }
@@ -27,19 +28,47 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-brand-teal text-white border-2 border-brand-teal
-           uppercase font-semibold px-8 py-3 transition-all duration-300 ease-in-out 
-           inline-flex items-center justify-center tracking-widest text-xs
-           hover:bg-brand-teal-light hover:border-brand-teal-light;
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: #1a3055;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
     font-family: var(--font-poppins);
+    transition: background-color 0.3s;
+  }
+
+  .btn-primary:hover {
+    background-color: #0d1a30;
   }
 
   .btn-ll {
-    @apply bg-brand-teal text-white border-2 border-brand-teal
-           uppercase font-semibold px-8 py-4 transition-all duration-300 ease-in-out 
-           inline-flex items-center justify-center tracking-widest text-xs
-           hover:bg-brand-teal-light hover:border-brand-teal-light;
+    @apply inline-flex items-center justify-center uppercase font-semibold px-8 py-4 tracking-widest text-xs transition-all duration-300;
+    background-color: #1a3055;
+    color: #fff;
+    border-radius: 25px;
     font-family: var(--font-poppins);
+  }
+
+  .btn-ll:hover {
+    background-color: #0d1a30;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: #1a3055;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+    font-family: var(--font-poppins);
+  }
+
+  .nav-link:hover, .nav-link.active {
+    background-color: #1a3055;
+    color: #fff;
   }
 }
 

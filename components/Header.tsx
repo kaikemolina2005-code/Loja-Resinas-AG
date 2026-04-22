@@ -43,15 +43,15 @@ export const Header = () => {
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center gap-1">
           {[
             { label: 'HOME', href: '/' },
             { label: 'VESTIDOS', href: '/category/vestidos' },
             { label: 'NOVIDADES', href: '/category/novidades' },
-            { label: 'COLECOES', href: '/category/conjuntos' },
+            { label: 'COLEÇÕES', href: '/category/conjuntos' },
             { label: 'SOBRE', href: '#' },
           ].map((item) => (
-            <Link key={item.label} href={item.href} style={{fontFamily: 'var(--font-poppins)'}} className="text-xs font-semibold tracking-widest text-brand-dark hover:text-brand-teal transition-colors uppercase">
+            <Link key={item.label} href={item.href} className="nav-link text-xs uppercase tracking-wider">
               {item.label}
             </Link>
           ))}
@@ -65,11 +65,11 @@ export const Header = () => {
               </motion.form>
             )}
           </AnimatePresence>
-          <button onClick={() => setIsSearchOpen(!isSearchOpen)} className="p-2 hover:text-brand-teal transition-colors"><Search size={18} /></button>
-          <button className="p-2 hover:text-brand-teal transition-colors hidden md:block"><User size={18} /></button>
-          <Link href="/cart" className="p-2 hover:text-brand-teal transition-colors relative">
+          <button onClick={() => setIsSearchOpen(!isSearchOpen)} className="p-2 hover:text-[#1a3055] transition-colors"><Search size={18} /></button>
+          <button className="p-2 hover:text-[#1a3055] transition-colors hidden md:block"><User size={18} /></button>
+          <Link href="/cart" className="p-2 hover:text-[#1a3055] transition-colors relative">
             <ShoppingCart size={18} />
-            {cartCount > 0 && (<span className="absolute -top-1 -right-1 bg-brand-teal text-white text-[9px] w-4 h-4 flex items-center justify-center rounded-full font-bold">{cartCount}</span>)}
+            {cartCount > 0 && (<span className="absolute -top-1 -right-1 bg-[#1a3055] text-white text-[9px] w-4 h-4 flex items-center justify-center rounded-full font-bold">{cartCount}</span>)}
           </Link>
           <button className="md:hidden p-2" onClick={() => setIsMenuOpen(true)}><Menu size={22} /></button>
         </div>
@@ -84,10 +84,10 @@ export const Header = () => {
                 { label: 'HOME', href: '/' },
                 { label: 'VESTIDOS', href: '/category/vestidos' },
                 { label: 'NOVIDADES', href: '/category/novidades' },
-                { label: 'COLECOES', href: '/category/conjuntos' },
+                { label: 'COLEÇÕES', href: '/category/conjuntos' },
                 { label: 'SOBRE', href: '#' },
               ].map((item) => (
-                <Link key={item.label} href={item.href} onClick={() => setIsMenuOpen(false)} style={{fontFamily: 'var(--font-poppins)'}} className="text-2xl font-semibold uppercase tracking-widest text-brand-dark hover:text-brand-teal transition-colors">{item.label}</Link>
+                <Link key={item.label} href={item.href} onClick={() => setIsMenuOpen(false)} style={{fontFamily: 'var(--font-poppins)', color: '#1a3055'}} className="text-2xl font-semibold uppercase tracking-widest hover:opacity-70 transition-opacity">{item.label}</Link>
               ))}
             </nav>
           </motion.div>
