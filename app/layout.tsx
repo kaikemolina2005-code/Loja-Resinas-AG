@@ -16,8 +16,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'LL Modas | Moda Feminina Elegante',
-  description: 'Tendências atuais com conforto e estilo. Descubra a coleção LL Modas.',
+  title: 'AG Resinas | Arte em Resina Epóxi',
+  description: 'Móveis e arte em resina epóxi. Peças únicas com madeira e resina de alta qualidade.',
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {

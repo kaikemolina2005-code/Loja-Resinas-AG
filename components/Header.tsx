@@ -1,93 +1,157 @@
 ﻿'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { ShoppingCart, Menu, X, Search, User } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { ShoppingCart, Search, User, Menu, X } from 'lucide-react';
+import { AnimatePresence, motion } from 'motion/react';
 import { useCart } from '@/context/CartContext';
 import { useRouter } from 'next/navigation';
+
+const WaterDropLogo = () => (
+  <svg width="42" height="46" viewBox="0 0 42 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="dg1" x1="10" y1="4" x2="32" y2="44" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#72cce3"/>
+        <stop offset="40%" stopColor="#2a9abc"/>
+        <stop offset="100%" stopColor="#0d5a7a"/>
+      </linearGradient>
+      <linearGradient id="dg2" x1="14" y1="8" x2="24" y2="22" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="rgba(255,255,255,0.55)"/>
+        <stop offset="100%" stopColor="rgba(255,255,255,0)"/>
+      </linearGradient>
+    </defs>
+    <path d="M21 2C21 2 4 19 4 29.5C4 38.6 11.8 44 21 44C30.2 44 38 38.6 38 29.5C38 19 21 2 21 2Z" fill="url(#dg1)"/>
+    <path d="M21 2C21 2 4 19 4 29.5C4 38.6 11.8 44 21 44C30.2 44 38 38.6 38 29.5C38 19 21 2 21 2Z" fill="url(#dg2)"/>
+    <text x="21" y="33" textAnchor="middle" fill="white" fontSize="11" fontWeight="700" fontFamily="Georgia, serif">AG</text>
+  </svg>
+);
+
+const NAV_ITEMS = [
+  { label: 'HOME',      href: '/' },
+  { label: 'LOJA',      href: '/search' },
+  { label: 'NOVIDADES', href: '/category/vestidos' },
+  { label: 'PROMOÇÕES', href: '/category/conjuntos' },
+  { label: 'SOBRE',     href: '#' },
+];
 
 export const Header = () => {
   const { cartCount } = useCart();
   const router = useRouter();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState('');
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-      setIsSearchOpen(false);
-      setSearchQuery('');
+    if (query.trim()) {
+      router.push('/search?q=' + encodeURIComponent(query.trim()));
+      setSearchOpen(false);
+      setQuery('');
     }
   };
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-white/95'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 md:h-20">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="relative w-10 h-10 overflow-hidden rounded-full">
-            <Image src="/logo.jpg" alt="LL Modas Logo" fill className="object-cover" />
-          </div>
-          <span style={{fontFamily: 'var(--font-playfair)'}} className="text-xl font-bold text-brand-dark tracking-wide">
-            LL MODAS<span className="text-brand-teal">.</span>
+    <header
+      className="sticky top-0 z-50"
+      style={{
+        background: 'rgba(242,240,235,0.88)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        borderBottom: '1px solid rgba(255,255,255,0.62)',
+        boxShadow: '0 2px 20px rgba(100,120,150,0.08)',
+      }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-[70px]">
+
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2 flex-shrink-0">
+          <WaterDropLogo />
+          <span style={{ fontFamily: 'var(--font-playfair)', fontSize: '20px', fontWeight: 700, color: '#1a1a1a' }}>
+            AG Resinas.
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-1">
-          {[
-            { label: 'HOME', href: '/' },
-            { label: 'VESTIDOS', href: '/category/vestidos' },
-            { label: 'NOVIDADES', href: '/category/novidades' },
-            { label: 'COLEÇÕES', href: '/category/conjuntos' },
-            { label: 'SOBRE', href: '#' },
-          ].map((item) => (
-            <Link key={item.label} href={item.href} className="nav-link text-xs uppercase tracking-wider">
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-2">
+          {NAV_ITEMS.map(item => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className="glass-nav-item px-4 py-[7px] rounded-full"
+              style={{ fontFamily: 'var(--font-poppins)', fontSize: '11px', fontWeight: 300, letterSpacing: '0.18em', color: '#3a3a3a', textDecoration: 'none' }}
+            >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center space-x-3">
+        {/* Icons */}
+        <div className="flex items-center gap-2">
           <AnimatePresence>
-            {isSearchOpen && (
-              <motion.form initial={{ width: 0, opacity: 0 }} animate={{ width: 200, opacity: 1 }} exit={{ width: 0, opacity: 0 }} onSubmit={handleSearch} className="overflow-hidden">
-                <input autoFocus type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Buscar..." className="w-full border border-gray-300 rounded px-3 py-1 text-xs outline-none focus:border-brand-teal" />
+            {searchOpen && (
+              <motion.form
+                initial={{ width: 0, opacity: 0 }}
+                animate={{ width: 180, opacity: 1 }}
+                exit={{ width: 0, opacity: 0 }}
+                onSubmit={handleSearch}
+                className="overflow-hidden"
+              >
+                <input
+                  autoFocus
+                  type="text"
+                  value={query}
+                  onChange={e => setQuery(e.target.value)}
+                  placeholder="Buscar..."
+                  style={{ width: '100%', border: '1px solid rgba(180,175,165,0.5)', borderRadius: '20px', padding: '6px 14px', fontSize: '12px', outline: 'none', background: 'rgba(255,255,255,0.65)', backdropFilter: 'blur(8px)' }}
+                />
               </motion.form>
             )}
           </AnimatePresence>
-          <button onClick={() => setIsSearchOpen(!isSearchOpen)} className="p-2 hover:text-[#1a3055] transition-colors"><Search size={18} /></button>
-          <button className="p-2 hover:text-[#1a3055] transition-colors hidden md:block"><User size={18} /></button>
-          <Link href="/cart" className="p-2 hover:text-[#1a3055] transition-colors relative">
-            <ShoppingCart size={18} />
-            {cartCount > 0 && (<span className="absolute -top-1 -right-1 bg-[#1a3055] text-white text-[9px] w-4 h-4 flex items-center justify-center rounded-full font-bold">{cartCount}</span>)}
+
+          <button onClick={() => setSearchOpen(v => !v)} className="glass-icon-btn w-9 h-9 rounded-full flex items-center justify-center">
+            <Search size={15} style={{ color: '#555' }} />
+          </button>
+          <button className="glass-icon-btn w-9 h-9 rounded-full items-center justify-center hidden md:flex">
+            <User size={15} style={{ color: '#555' }} />
+          </button>
+          <Link href="/cart" className="glass-icon-btn w-9 h-9 rounded-full flex items-center justify-center relative" style={{ textDecoration: 'none' }}>
+            <ShoppingCart size={15} style={{ color: '#555' }} />
+            <span style={{ position: 'absolute', top: '-2px', right: '-2px', background: '#2563eb', color: '#fff', fontSize: '8px', width: '16px', height: '16px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700 }}>
+              {cartCount}
+            </span>
           </Link>
-          <button className="md:hidden p-2" onClick={() => setIsMenuOpen(true)}><Menu size={22} /></button>
+          <button className="md:hidden glass-icon-btn w-9 h-9 rounded-full flex items-center justify-center" onClick={() => setMenuOpen(true)}>
+            <Menu size={18} style={{ color: '#555' }} />
+          </button>
         </div>
       </div>
 
+      {/* Mobile Menu */}
       <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div initial={{ opacity: 0, x: '100%' }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: '100%' }} transition={{ type: 'spring', damping: 25, stiffness: 200 }} className="fixed inset-0 bg-white z-[60] flex flex-col p-6">
-            <div className="flex justify-end"><button onClick={() => setIsMenuOpen(false)} className="p-2"><X size={28} /></button></div>
-            <nav className="flex flex-col space-y-6 mt-10">
-              {[
-                { label: 'HOME', href: '/' },
-                { label: 'VESTIDOS', href: '/category/vestidos' },
-                { label: 'NOVIDADES', href: '/category/novidades' },
-                { label: 'COLEÇÕES', href: '/category/conjuntos' },
-                { label: 'SOBRE', href: '#' },
-              ].map((item) => (
-                <Link key={item.label} href={item.href} onClick={() => setIsMenuOpen(false)} style={{fontFamily: 'var(--font-poppins)', color: '#1a3055'}} className="text-2xl font-semibold uppercase tracking-widest hover:opacity-70 transition-opacity">{item.label}</Link>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: 'spring', damping: 26, stiffness: 200 }}
+            className="fixed inset-0 z-[60] flex flex-col p-6"
+            style={{ background: 'rgba(242,240,235,0.97)', backdropFilter: 'blur(20px)' }}
+          >
+            <div className="flex justify-end">
+              <button onClick={() => setMenuOpen(false)} className="glass-icon-btn w-10 h-10 rounded-full flex items-center justify-center">
+                <X size={20} style={{ color: '#555' }} />
+              </button>
+            </div>
+            <nav className="flex flex-col gap-5 mt-10">
+              {NAV_ITEMS.map(item => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  style={{ fontFamily: 'var(--font-playfair)', fontSize: '28px', fontWeight: 700, color: '#1a3055', textDecoration: 'none' }}
+                >
+                  {item.label}
+                </Link>
               ))}
             </nav>
           </motion.div>

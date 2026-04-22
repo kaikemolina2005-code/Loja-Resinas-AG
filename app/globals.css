@@ -1,16 +1,71 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #f7f7f7;
-  --color-foreground: #333;
-  --color-brand-primary: #1a3055;
-  --color-brand-primary-dark: #0d1a30;
-  --color-brand-dark: #333;
-  /* keep teal aliases so existing classes don't break */
-  --color-brand-teal: #1a3055;
-  --color-brand-teal-light: #2a4a7f;
+  --color-background: #f2f0eb;
+  --color-foreground: #1a1a1a;
   --font-playfair: 'Playfair Display', serif;
   --font-poppins: 'Poppins', sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: #f2f0eb;
+    background-image:
+      radial-gradient(ellipse 80% 60% at 12% 55%, rgba(232,224,210,0.72) 0%, transparent 58%),
+      radial-gradient(ellipse 60% 45% at 88% 10%, rgba(226,220,210,0.62) 0%, transparent 52%),
+      radial-gradient(ellipse 50% 35% at 52% 90%, rgba(230,222,208,0.52) 0%, transparent 46%),
+      linear-gradient(122deg, transparent 40%, rgba(198,188,176,0.20) 41%, rgba(198,188,176,0.20) 44%, transparent 45%),
+      linear-gradient(66deg,  transparent 51%, rgba(205,197,183,0.14) 52%, rgba(205,197,183,0.14) 55%, transparent 56%),
+      linear-gradient(170deg, transparent 16%, rgba(193,183,170,0.10) 17%, rgba(193,183,170,0.10) 20%, transparent 21%);
+    background-attachment: fixed;
+    color: var(--color-foreground);
+    font-family: var(--font-poppins);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  /* Glassmorphism nav item (header pills) */
+  .glass-nav-item {
+    background: rgba(255, 255, 255, 0.32);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.58);
+    box-shadow: 0 2px 12px rgba(100,130,170,0.12), 0 6px 22px rgba(100,130,170,0.06), inset 0 1px 0 rgba(255,255,255,0.72);
+    transition: all 0.28s ease;
+  }
+  .glass-nav-item:hover {
+    background: rgba(255, 255, 255, 0.58);
+    box-shadow: 0 4px 18px rgba(100,130,170,0.20), inset 0 1px 0 rgba(255,255,255,0.85);
+  }
+
+  /* Glassmorphism icon button */
+  .glass-icon-btn {
+    background: rgba(255, 255, 255, 0.38);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255,0.62);
+    box-shadow: 0 2px 10px rgba(100,120,160,0.15), inset 0 1px 0 rgba(255,255,255,0.72);
+    transition: all 0.22s ease;
+  }
+  .glass-icon-btn:hover {
+    background: rgba(255, 255, 255, 0.58);
+  }
+
+  /* Hero pill CTA button */
+  .glass-hero-btn {
+    background: rgba(0, 0, 0, 0.36);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(80,168,224,0.48);
+    box-shadow: 0 0 28px rgba(60,148,216,0.28), inset 0 1px 0 rgba(255,255,255,0.14);
+    transition: all 0.3s ease;
+  }
+  .glass-hero-btn:hover {
+    background: rgba(0, 0, 0, 0.52);
+    box-shadow: 0 0 38px rgba(60,148,216,0.44);
+  }
 }
 
 @layer base {

@@ -5,46 +5,43 @@ import { Facebook, Instagram, Youtube } from 'lucide-react';
 
 export const Footer = () => {
   return (
-    <footer style={{ backgroundColor: '#1a3055', color: '#fff' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {/* Logo */}
+    <footer style={{
+      background: 'rgba(242,240,235,0.92)',
+      backdropFilter: 'blur(12px)',
+      WebkitBackdropFilter: 'blur(12px)',
+      borderTop: '1px solid rgba(200,195,183,0.45)',
+      padding: '44px 0 28px',
+    }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '32px' }}>
+
           <div>
-            <span style={{ fontFamily: 'var(--font-playfair)', fontSize: '20px', fontWeight: 700 }}>
-              LL MODAS.
+            <span style={{ fontFamily: 'var(--font-playfair)', fontSize: '18px', fontWeight: 700, color: '#1a1a1a' }}>
+              AG Resinas.
             </span>
           </div>
 
-          {/* Social */}
           <div>
-            <h4 style={{ fontFamily: 'var(--font-poppins)', fontWeight: 600, marginBottom: '15px', fontSize: '14px' }}>Social</h4>
-            <div className="flex items-center gap-5">
-              <Link href="#" className="hover:opacity-70 transition-opacity text-white"><Facebook size={22} /></Link>
-              <Link href="#" className="hover:opacity-70 transition-opacity text-white"><Instagram size={22} /></Link>
-              <Link href="#" className="hover:opacity-70 transition-opacity text-white"><Youtube size={22} /></Link>
+            <h4 style={{ fontFamily: 'var(--font-poppins)', fontWeight: 600, fontSize: '10px', letterSpacing: '0.18em', color: '#2a3a5a', marginBottom: '14px', textTransform: 'uppercase' }}>Social</h4>
+            <div style={{ display: 'flex', gap: '14px', color: '#555' }}>
+              <Link href="#" style={{ color: '#555' }}><Facebook size={18} /></Link>
+              <Link href="#" style={{ color: '#555' }}><Instagram size={18} /></Link>
+              <Link href="#" style={{ color: '#555' }}><Youtube size={18} /></Link>
             </div>
           </div>
 
-          {/* Info */}
           <div>
-            <h4 style={{ fontFamily: 'var(--font-poppins)', fontWeight: 600, marginBottom: '15px', fontSize: '14px' }}>Info</h4>
-            <ul className="flex flex-col gap-2">
-              <li><Link href="#" style={{ color: '#fff', fontSize: '14px', textDecoration: 'none', fontFamily: 'var(--font-poppins)' }} className="hover:underline">Encomendas</Link></li>
-              <li><Link href="#" style={{ color: '#fff', fontSize: '14px', textDecoration: 'none', fontFamily: 'var(--font-poppins)' }} className="hover:underline">Prazos</Link></li>
-              <li><Link href="#" style={{ color: '#fff', fontSize: '14px', textDecoration: 'none', fontFamily: 'var(--font-poppins)' }} className="hover:underline">Materiais</Link></li>
-            </ul>
+            <h4 style={{ fontFamily: 'var(--font-poppins)', fontWeight: 600, fontSize: '10px', letterSpacing: '0.18em', color: '#2a3a5a', marginBottom: '14px', textTransform: 'uppercase' }}>Info</h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <Link href="#" style={{ fontFamily: 'var(--font-poppins)', fontSize: '13px', color: '#666', textDecoration: 'none' }}>Encomendas</Link>
+              <Link href="#" style={{ fontFamily: 'var(--font-poppins)', fontSize: '13px', color: '#666', textDecoration: 'none' }}>Prazos</Link>
+              <Link href="#" style={{ fontFamily: 'var(--font-poppins)', fontSize: '13px', color: '#666', textDecoration: 'none' }}>Materiais</Link>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Footer bottom */}
-      <div style={{ borderTop: '1px solid rgba(255,255,255,0.2)', paddingTop: '20px', paddingBottom: '20px', textAlign: 'center' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-center items-center gap-4">
-          <div className="flex gap-5" style={{ fontFamily: 'var(--font-poppins)', fontSize: '12px', color: 'rgba(255,255,255,0.7)' }}>
-            <span>Anumateo</span>
-            <span>Soniantata</span>
-            <span>Ponto bralado</span>
-          </div>
+        <div style={{ marginTop: '36px', paddingTop: '20px', borderTop: '1px solid rgba(180,175,165,0.35)', textAlign: 'center' }}>
+          <p style={{ fontFamily: 'var(--font-poppins)', fontSize: '11px', color: '#999' }}>2026 AG Resinas. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>
